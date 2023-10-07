@@ -12,12 +12,12 @@ import java.util.List;
 public interface RelatorioRepository extends JpaRepository<NotaCompraItem, Long> {
 
     @Query("""
-                select new br.inatel.labs.labjpa.dto.TotalCompradoPorFornecedor
-                (f.razaoSocial, sum(i.quantidade * i.valorCompraProduto)) 
-                from NotaCompraItem   i 
-                join i.notaCompra n 
-                join n.fornecedor f 
-                group by f.razaoSocial 
+            select new br.inatel.labs.labjpa.dto.TotalCompradoPorFornecedor
+            ( f.razaoSocial, sum( i.quantidade * i.valorCompraProduto )) 
+            from NotaCompraItem   i 
+            join i.notaCompra n 
+            join n.fornecedor f 
+            group by f.razaoSocial 
             """)
     public List<TotalCompradoPorFornecedor> pesquisarTotalCompradoPorFornecedor();
 }
