@@ -1,4 +1,4 @@
-package br.inatel.labs.labjpa.domain;
+package br.inatel.labs.labjpa.entity;
 
 import jakarta.persistence.Entity;
 

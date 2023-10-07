@@ -1,10 +1,9 @@
-package br.inatel.labs.labjpa.domain;
+package br.inatel.labs.labjpa.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import org.aspectj.weaver.ast.Not;
 
 import java.math.BigDecimal;
 
