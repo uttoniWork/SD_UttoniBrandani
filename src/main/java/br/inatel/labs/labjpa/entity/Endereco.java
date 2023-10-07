@@ -42,6 +42,10 @@ public class Endereco {
         return rua;
     }
 
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
+
     public String getNumero() {
         return numero;
     }

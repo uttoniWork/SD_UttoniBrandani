@@ -1,67 +1,59 @@
 package br.inatel.labs.labjpa;
 
-import java.time.LocalDate;
-
+import br.inatel.labs.labjpa.entity.NotaCompra;
+import br.inatel.labs.labjpa.entity.NotaCompraItem;
+import br.inatel.labs.labjpa.service.NotaCompraService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import br.inatel.labs.labjpa.entity.NotaCompra;
-import br.inatel.labs.labjpa.entity.NotaCompraItem;
-import br.inatel.labs.labjpa.service.NotaCompraService;
+import java.time.LocalDate;
 
 @SpringBootTest
 public class LoadingDemo {
-	
-	@Autowired
-	private NotaCompraService service;
-	
-	@Test
-	public void demoPlanejandoConsulta() {
-	  try {
-	    //mas invocando outro método
-	    NotaCompra nota = service.buscarNotaCompraPeloIdComListaItem( 1L );
 
-	    int tamanho = nota.getListaNotaCompraItem().size();
+    @Autowired
+    private NotaCompraService notaCompraService;
 
-	    System.out.println( tamanho );
+    @Test
+    public void demoPlanejandoConsulta() {
+        try {
+            NotaCompra nota = notaCompraService.buscarNotaCompraPeloIdComListaItem(1L);
 
-	  } catch (Exception e) {
-	    System.out.println("O carregamento foi LAZY e por isso lançou exception");
-	    e.printStackTrace();
-	  }
-	}
+            int tamanho = nota.getListaNotaCompraItem().size();
 
-	
-	@Test
-	public void demoLazyLoading() {
-		try {
-			NotaCompra nota = service.buscarNotaCompraPeloId( 1L );
+            System.out.println(tamanho);
 
-			int tamanho = nota.getListaNotaCompraItem().size();
+        } catch (Exception e) {
+            System.out.println("O carregamento foi LAZY e por isso lançou exception");
+            e.printStackTrace();
+        }
+    }
 
-			System.out.println( tamanho );
+    @Test
+    public void demoLazyLoading() {
+        try {
+            NotaCompra notaCompra = notaCompraService.buscarNotaCompraPeloId(1L).get();
+            int tamanho = notaCompra.getListaNotaCompraItem().size();
 
-		} catch (Exception e) {
-			System.out.println("O carregamento foi LAZY e por isso lançou exception");
-			e.printStackTrace();
-		}
-	}
+            System.out.println(tamanho);
 
-	
-	@Test
-	public void demoEagerLoading() {
-	  try {
-		NotaCompraItem item = service.buscarNotaCompraItemPeloId( 1L );
+        } catch (Exception e) {
+            System.out.println("O carregamento foi LAZY e por isso lançou exception");
+            e.printStackTrace();
+        }
+    }
 
-		LocalDate dataEmissao = item.getNotaCompra().getDataEmissao();
+    @Test
+    public void demoEagerLoading() {
+        try {
+            NotaCompraItem item = notaCompraService.buscarNotaCompraItemPeloId(1L).get();
+            LocalDate dataEmissao = item.getNotaCompra().getDataEmissao();
 
-		System.out.println( dataEmissao );
-
-		System.out.println("Aconteceu carregamento EAGER");
-
-	  } catch (Exception e) {
-		e.printStackTrace();
-	  }
-	}
+            System.out.println(dataEmissao);
+            System.out.println("Aconteceu carregamento EAGER");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
