@@ -1,7 +1,7 @@
 package br.inatel.labs.labjpa.service;
 
+import br.inatel.labs.labjpa.dto.TotalCompradoPorFornecedor;
 import br.inatel.labs.labjpa.repository.RelatorioRepository;
-import dto.TotalCompradoPorFornecedor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
