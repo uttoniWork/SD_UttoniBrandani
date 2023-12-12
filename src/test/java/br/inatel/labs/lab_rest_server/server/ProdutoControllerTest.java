@@ -1,4 +1,4 @@
-package br.inatel.labs.server;
+package br.inatel.labs.lab_rest_server.server;
 
 
 import br.inatel.labs.lab_rest_server.model.Produto;

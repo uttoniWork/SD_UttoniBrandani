@@ -1,4 +1,4 @@
-package br.inatel.labs.client;
+package br.inatel.labs.lab_rest_client.client;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
